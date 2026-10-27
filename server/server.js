@@ -57,12 +57,10 @@ app.use('/api', (req, res) => {
 
 // Any other unmatched URL (a typo'd or removed page) gets the friendly
 // 404 page instead of Express's default plain-text error.
-//app.use((req, res) => {
-  //res.status(404).sendFile(path.join(__dirname, '..', 'client', 'index.html'));
-//});
-app.get('/', (req, res) => {
-    res.send('MediWell Backend Server is Running Perfectly!');
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, '..', 'client', 'index.html'));
 });
+
 // Last-resort handler for anything that slips past every route's own
 // try/catch - keeps a stray error from ever showing a stack trace to a
 // visitor, and still logs the real cause server-side for debugging.
